@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
 import Button from './Button'
+import  styles from "styled-components";
+
+const Page = styles.section`
+ font-size:30px;
+ margin-top:5%;
+`
 
 const LoginScreen = () => {
   const [loginCred, setloginCred] = useState({ email: '', password: '' })
@@ -12,10 +18,10 @@ const LoginScreen = () => {
   window.localStorage.setItem("LoginCred", JSON.stringify(loginCred))
 
   return (
-    <div className='login-screen'>
+    <Page className='login-screen'>
       <form>
         <label htmlFor='email'>
-          Email
+          Email:
           <input
             placeholder='email'
             value={loginCred.email}
@@ -24,7 +30,7 @@ const LoginScreen = () => {
           />
         </label>
         <label htmlFor='password'>
-          Password
+          Password:
         <input
             type='password'
             placeholder='password'
@@ -38,7 +44,7 @@ const LoginScreen = () => {
           <Button type='submit' buttonText={'SIGNUP'} pathName={'signup'} />
         </div>
       </form>
-    </div>
+    </Page>
   )
 }
 
