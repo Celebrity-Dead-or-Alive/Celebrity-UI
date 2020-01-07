@@ -26,7 +26,7 @@ const GameScreen = () => {
     useEffect(() => {
         axios
             .get(
-                `https://prod-celebrity-dead-alive.herokuapp.com/api/celebrities`
+                `https://celebs-back-end.herokuapp.com/api/celebs`
             )
             .then((e) => {
                 e.status ? setData(e.data) : console.log("This shouldn't show up")
