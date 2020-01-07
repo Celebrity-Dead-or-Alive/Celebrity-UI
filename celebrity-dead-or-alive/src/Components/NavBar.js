@@ -17,6 +17,7 @@ export default function NavBar() {
         <li><Link to="/Login">Login</Link></li>
         <li><Link to="/startscreen">Quiz</Link></li>
         
+        
       
       </ul>
     </nav>

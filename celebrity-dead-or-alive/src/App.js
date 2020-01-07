@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from './Components/NavBar';
 import WelcomePage from './Components/WelcomePage';
 import StartScreen from './Components/StartScreen'
+import Login from './Components/Login'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Switch>
           <Route exact path='/' component={WelcomePage} />  
           <Route exact path="/startscreen" component={StartScreen}/>
+          <Route exact path="/login" component={Login}/>
          
         </Switch> 
    
