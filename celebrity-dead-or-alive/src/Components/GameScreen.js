@@ -3,11 +3,24 @@ import { Redirect, Route } from 'react-router-dom'
 import axios from 'axios'
 import CelebCard from './CelebCard'
 import Timebar from './Timebar'
+import  styles from "styled-components";
+
+const Buttons = styles.button`
+padding: .6rem 1.5rem;
+margin: .4rem;
+border-radius: 3px;
+text-transform: uppercase;
+font-weight: 600;
+font-size: .8rem;
+border-style: groove;
+`
+
 
 const GameScreen = () => {
     const randomID = () => {
         return Math.floor(Math.random() * 300 + 1)
     }
+    const[isReady, setisReady]=useState(false)
 
     //This fetches the list of celebs
     const [data, setData] = useState([])
@@ -21,8 +34,9 @@ const GameScreen = () => {
     const [time, setTime] = useState(30)
     const [wrongDead, setWrongDead] = useState(false)
     const [wrongAlive, setWrongAlive] = useState(false)
-    let t = 5
-    //Grabs Data from API
+    const [isLast, setisLast]=useState(false)
+  console.log(index)
+  console.log(isLast)
     useEffect(() => {
         axios
             .get(
@@ -35,13 +49,13 @@ const GameScreen = () => {
                 console.log('Something isnt working', err)
                 //setId(randomID())
             })
-    }, []);
+    }, [isLast]);
 
-    useEffect(() => {
-        if (!time) return;
-        const timer = setInterval(() => setTime(time - 1), 1000)
-        return () => clearTimeout(timer)
-    }, [time]);
+    // useEffect(() => {
+    //     if (!time) return;
+    //     const timer = setInterval(() => setTime(time - 1), 1000)
+    //     return () => clearTimeout(timer)
+    // }, [time]);
 
     //Checks for death case on Click
     const isDead = (deathCheck) => {
@@ -74,13 +88,31 @@ const GameScreen = () => {
     window.localStorage.setItem('CorrectGuesses', JSON.stringify(score))
     window.localStorage.setItem('TotalGuesses', JSON.stringify(guesses))
     const person = data[index];
+    if (!isReady ){
+        return (
+            <div>
+                <h2>Are you ready to Play?</h2>
+                <button onClick={()=>setisReady(true)}>Play</button>
+            </div>
+
+        )
+    }
+    else if (isLast){
+        return(
+            // display scoreboard here
+            <div> <h2>Please SignUp/ Login to against your Friends!!!!</h2>
+            <button> Sign Up </button>
+            <button onClick = {()=>{setisLast(false) ; setisReady(false);setIndex(0)}}> Play Again</button>            
+            </div>
+                     
+        )
+       
+    }
     return (
         <div className='play-screen'>
 
-            {time === 0 ? (
-                <Redirect to='/end' />
-            ) : (
-                    <div className='play-content'>
+           
+                      <div className='play-content'>
                         <div className='score-status'>
                             <h3>Guesses:&nbsp;&nbsp; {guesses}</h3>
                             <h3>Correct Guesses:&nbsp;&nbsp; {score}</h3>
@@ -91,21 +123,20 @@ const GameScreen = () => {
                         </div>
 
 
-                        <button
-                            onClick={() => isDead(person.death)}
+                        <Buttons
+                            onClick={index===19?()=>setisLast(true) :() => isDead(person.death)}
                             className={wrongDead ? 'wrong' : ''}
                         >
                             Dead
-              </button>
-                        <button
-                            onClick={() => isAlive(person.death)}
+              </Buttons>
+                        <Buttons
+                            onClick={index===19?()=>setisLast(true) : () => isAlive(person.death)}
                             className={wrongAlive ? 'wrong' : ''}
                         >
                             Alive
-              </button>
+              </Buttons>
                     </div>
-                )
-            }
+                
         </div>
     )
 }

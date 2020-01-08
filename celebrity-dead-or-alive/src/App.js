@@ -1,12 +1,13 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 import './App.css';
 import NavBar from './Components/NavBar';
 import WelcomePage from './Components/WelcomePage';
 import StartScreen from './Components/StartScreen'
 import Login from './Components/Login'
 import GameScreen from './Components/GameScreen'
-import CelebCard from './Components/CelebCard';
+
+export const BASE_URL = 'https://celebs-back-end.herokuapp.com/api';
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
           <Route exact path="/startscreen" component={StartScreen}/>
           <Route exact path="/login" component={Login}/>
           <Route path='/play' component={GameScreen} />
-          <Route path='/end' render={() => <h1>Enddddd</h1>} />
+         
         </Switch> 
    
     </div>
