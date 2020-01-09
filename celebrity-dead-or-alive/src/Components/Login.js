@@ -6,6 +6,11 @@ const Page = styles.section`
  font-size:30px;
  margin-top:5%;
 `
+const Img2 = styles.img`
+display:flex;
+flex-direction:column;
+margin:0 auto;`
+
 
 const LoginScreen = () => {
   const [loginCred, setloginCred] = useState({ email: '', password: '' })
@@ -42,6 +47,11 @@ const LoginScreen = () => {
         <div className='buttons'>
           <Button type='submit' buttonText={'SUBMIT'} pathName={''} />
           <Button type='submit' buttonText={'SIGNUP'} pathName={'signup'} />
+          <Img2
+            className="main-img"
+            src="https://st.depositphotos.com/1292351/2335/v/450/depositphotos_23359312-stock-illustration-cartoon-illustration-of-cute-green.jpg"
+            alt="zombie"
+          />
         </div>
       </form>
     </Page>

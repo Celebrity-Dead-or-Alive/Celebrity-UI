@@ -1,9 +1,6 @@
 import React from "react";
 import  styles from "styled-components";
-// import {Link} from "react-router-dom";
 
-const Img = styles.img`
-margin-top: 10%;`
 
 const Img2 = styles.img`
 display:flex;
