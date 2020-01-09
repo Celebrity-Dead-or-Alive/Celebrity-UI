@@ -6,6 +6,7 @@ import WelcomePage from './Components/WelcomePage';
 import StartScreen from './Components/StartScreen'
 import Login from './Components/Login'
 import GameScreen from './Components/GameScreen'
+import Signup from './Components/Signup'
 
 export const BASE_URL = 'https://celebs-back-end.herokuapp.com/api';
 
@@ -22,7 +23,7 @@ function App() {
           <Route exact path="/startscreen" component={StartScreen}/>
           <Route exact path="/login" component={Login}/>
           <Route path='/play' component={GameScreen} />
-         
+          <Route path='/signup' component={Signup} />
         </Switch> 
    
     </div>

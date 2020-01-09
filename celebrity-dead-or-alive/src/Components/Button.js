@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import  styles from "styled-components";
 
+
+const buttonS = styles.img`
+margin-top: 10%;`
 
 
 const Button = (props) => {

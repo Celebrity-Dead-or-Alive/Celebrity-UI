@@ -4,6 +4,7 @@ import axios from 'axios'
 import CelebCard from './CelebCard'
 import Timebar from './Timebar'
 import  styles from "styled-components";
+import Button from './Button'
 
 const Buttons = styles.button`
 padding: .6rem 1.5rem;
@@ -85,8 +86,7 @@ const GameScreen = () => {
         setGuesses(guesses + 1)
     }
 
-    window.localStorage.setItem('CorrectGuesses', JSON.stringify(score))
-    window.localStorage.setItem('TotalGuesses', JSON.stringify(guesses))
+    
     const person = data[index];
     if (!isReady ){
         return (
@@ -101,7 +101,7 @@ const GameScreen = () => {
         return(
             // display scoreboard here
             <div> <h2>Please SignUp/ Login to against your Friends!!!!</h2>
-            <button> Sign Up </button>
+            <Button type='submit' buttonText={'SIGNUP'} pathName={'signup'} />
             <button onClick = {()=>{setisLast(false) ; setisReady(false);setIndex(0)}}> Play Again</button>            
             </div>
                      

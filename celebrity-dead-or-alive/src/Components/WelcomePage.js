@@ -60,12 +60,7 @@ export default function WelcomePage() {
            
         <header>
           <Vampire className= "blood">The Ultimate Dead or Alive Quiz</Vampire>
-           
-          <Img
-            className="main-img"
-            src="https://files.slack.com/files-pri/T4JUEB3ME-FRV9DJYKE/logomakr_7q6qud.png"
-            alt="rick"
-          /> 
+         
            <Img2
             className="main-img"
             src="https://st.depositphotos.com/1292351/2335/v/450/depositphotos_23359312-stock-illustration-cartoon-illustration-of-cute-green.jpg"
