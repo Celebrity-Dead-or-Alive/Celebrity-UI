@@ -49,19 +49,27 @@ const NewUser = ({ values, errors, touched, status }) => {
             <Form class='FormMASTER'>
                 <StyledForm class='Form'>
                     <div>
-                        <StyledEntry>Enter Name<Field type="text" name="name" placeholder="Name" /></StyledEntry>
-                        {touched.name && errors.name && (<p className="error">{errors.name}</p>)}
+                        <StyledEntry>Enter First Name: <Field type="text" name="firstName" placeholder="Name" /></StyledEntry>
+                        {touched.firstName && errors.firstName && (<p className="error">{errors.firstName}</p>)}
                     </div>
                     <div>
-                        <StyledEntry>Enter Email<Field type="email" name="email" placeholder="Email" /></StyledEntry>
+                        <StyledEntry>Enter Last Name: <Field type="text" name="lastName" placeholder="Name" /></StyledEntry>
+                        {touched.lastName && errors.lastName&& (<p className="error">{errors.lastName}</p>)}
+                    </div>
+                    <div>
+                        <StyledEntry>Enter UserName:  <Field type="text" name="username" placeholder="User Name" /></StyledEntry>
+                        {touched.username && errors.username && (<p className="error">{errors.username}</p>)}
+                    </div>
+                    
+                    <div>
+                        <StyledEntry>Enter Email: <Field type="email" name="email" placeholder="Email" /></StyledEntry>
                         {touched.email && errors.email && (<p className="error">{errors.email}</p>)}
                     </div>
                     <div>
-                        <StyledEntry>Enter Password<Field type="password" name="password" placeholder="●●●●●●●●" /></StyledEntry>
+                        <StyledEntry>Enter Password: <Field type="password" name="password" placeholder="●●●●●●●●" /></StyledEntry>
                         {touched.password && errors.password && (<p className="error">{errors.password}</p>)}
                     </div>
-                    <StyledEntry>Agree to Terms of Services: <Field type="checkbox" name="terms" checked={values.terms} /></StyledEntry>
-                    {touched.terms && errors.terms && (<p className="error">{errors.terms}</p>)}
+                    
                     <button style={buttonStyles}>Submit</button>
                 </StyledForm>
             </Form>
@@ -71,38 +79,43 @@ const NewUser = ({ values, errors, touched, status }) => {
             alt="zombie"
           />
             {/* Prints user info after submission */}
-            {user.map(person => (
+            {/* {user.map(person => (
                 <ul key={person.id}>
                     <li> Hello: {person.name}</li>
                     
                 </ul>
                 
-            ))}
+            ))} */}
         </div>
 
     )
 }
 const FormikNewUser = withFormik({
-    mapPropsToValues({ name, email, password, terms }) {
+    mapPropsToValues({ firstName,lastName, email,username, password }) {
+      console.log('ffff', firstName, 'jjjjjjjj', lastName, 'uuuuu', username, 'ppppp', password, 'emmmm', email)
         return {
-            name: name || "",
-            email: email || "",
-            password: password || "",
-            terms: terms || false
+            firstName,
+            lastName,
+            username,
+            email,
+            password,
+          
         };
     },
 
 
     validationSchema: Yup.object().shape({
-        name: Yup.string().min(2, "Name must have more than one character.").required("Required field."),
+        firstName: Yup.string().min(2, "Name must have more than one character.").required("Required field."),
+        lastName: Yup.string().min(2, "Name must have more than one character.").required("Required field."),
+        username: Yup.string().min(2, "Name must have more than one character.").required("Required field."),
         email: Yup.string().email("Email not valid.").required("Required field."),
         password: Yup.string().min(6, "Password must have at least 6 characters.").required("Required field."),
-        terms: Yup.boolean().oneOf([true], "Must accept Terms of Service.").required()
+       
     }),
 
     handleSubmit(values, { setStatus }) {
         axios
-            .post("https://reqres.in/api/users/", values)
+            .post("https://celebs-back-end.herokuapp.com/api/auth/register", values)
             .then(response => {
                 console.log(response);
                 setStatus(response.data);
