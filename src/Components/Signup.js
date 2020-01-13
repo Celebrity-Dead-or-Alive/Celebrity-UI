@@ -92,7 +92,7 @@ const NewUser = ({ values, errors, touched, status }) => {
 }
 const FormikNewUser = withFormik({
     mapPropsToValues({ firstName,lastName, email,username, password }) {
-      console.log('ffff', firstName, 'jjjjjjjj', lastName, 'uuuuu', username, 'ppppp', password, 'emmmm', email)
+      // console.log('ffff', firstName, 'jjjjjjjj', lastName, 'uuuuu', username, 'ppppp', password, 'emmmm', email)
         return {
             firstName,
             lastName,
